@@ -15,7 +15,20 @@
     <div class="col-md-4">
       <a th:href="@{/dishes/search}" class="btn btn-primary">Search Dishes</a>
     </div>
+  </div>  <br />
+  <div th:if="${dishes}">
+    <h3>All Dishes in my Menu</h3>
+
+    <div th:each="dish : ${dishes}" class="card mt-2">
+      <div class="card-body">
+        <h5 class="card-title" th:text="${dish.name}">Dish Name</h5>
+        <p class="card-text" th:text="'Price: $' + ${dish.price}">Price</p>
+        <p class="card-text" th:text="'Calories: ' + ${dish.calories}">Calories</p>
+        <p class="card-text" th:text="'Ingredients: ' + ${dish.ingredients}">Ingredients</p>
+      </div>
+    </div>
   </div>
+
 </div>
 </body>
 </html>

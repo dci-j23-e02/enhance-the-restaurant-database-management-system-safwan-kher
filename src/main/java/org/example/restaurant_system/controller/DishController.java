@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,7 +19,8 @@ public class DishController {
   private DishService service;
 
   @GetMapping("/")
-  public String showHomePage(){
+  public String showHomePage(Model model){
+    model.addAttribute("dishes", service.getAllDishes() );
     return "home";
   }
 
@@ -70,5 +72,17 @@ public class DishController {
     return "search-dishes";
 
   }
+
+
+  // Adding Edit Dish feature
+
+  @GetMapping("/dishes/edit/{id}")
+  public String showEditDishForm(@PathVariable Long id, Model model){
+  Dish dish = service.getDishById(id);
+  if (dish == null) throw new RuntimeException("Dish not found !!!");
+  model.addAttribute("dish", dish);
+  return "edit-dish";
+  }
+
 
 }
