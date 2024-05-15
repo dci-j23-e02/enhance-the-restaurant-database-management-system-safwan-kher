@@ -33,6 +33,8 @@
         <p class="card-text" th:text="'Price: $' + ${dish.price}">Price</p>
         <p class="card-text" th:text="'Calories: ' + ${dish.calories}">Calories</p>
         <p class="card-text" th:text="'Ingredients: ' + ${dish.ingredients}">Ingredients</p>
+        <!-- Edit link -->
+        <a th:href="@{/dishes/edit/{id}(id=${dish.id})}" class="btn btn-primary">Edit</a>
       </div>
     </div>
   </div>

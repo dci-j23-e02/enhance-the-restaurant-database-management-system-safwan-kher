@@ -40,7 +40,7 @@ public class DishController {
 
     service.saveDish(dish);
 
-    return "home";
+    return "redirect:/";
   }
 
   @GetMapping("/dishes/search")
@@ -82,6 +82,26 @@ public class DishController {
   if (dish == null) throw new RuntimeException("Dish not found !!!");
   model.addAttribute("dish", dish);
   return "edit-dish";
+  }
+
+  @PostMapping("/dishes/edit/{id}")
+  public String updateDish(
+      @PathVariable Long id,
+      @RequestParam("name") String name,
+      @RequestParam("price") Double price,
+      @RequestParam("calories") Integer calories,
+      @RequestParam("ingredients") String ingredients,
+      Model model
+
+  ){
+    service.updateDish(
+        id,
+        name,
+        price,
+        calories,
+        ingredients
+    );
+    return "redirect:/";
   }
 
 
