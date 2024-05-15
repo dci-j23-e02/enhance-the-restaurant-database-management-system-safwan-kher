@@ -90,8 +90,7 @@ public class DishController {
       @RequestParam("name") String name,
       @RequestParam("price") Double price,
       @RequestParam("calories") Integer calories,
-      @RequestParam("ingredients") String ingredients,
-      Model model
+      @RequestParam("ingredients") String ingredients
 
   ){
     service.updateDish(
